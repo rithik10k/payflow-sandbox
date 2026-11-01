@@ -3,9 +3,9 @@ package com.payflow.wallet.assembler;
 import com.payflow.wallet.dto.WalletResponse;
 import com.payflow.wallet.entity.Wallet;
 
-public class ResponseAssembler {
+public class WalletAssembler {
 
-  public static WalletResponse mapToResponse(Wallet wallet) {
+  public static WalletResponse toResponse(Wallet wallet) {
     return WalletResponse.builder()
         .id(wallet.getId())
         .userId(wallet.getUserId())

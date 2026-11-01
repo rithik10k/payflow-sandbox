@@ -1,6 +1,6 @@
 package com.payflow.wallet.service;
 
-import com.payflow.wallet.assembler.ResponseAssembler;
+import com.payflow.wallet.assembler.WalletAssembler;
 import com.payflow.wallet.dto.CreateWalletRequest;
 import com.payflow.wallet.dto.WalletResponse;
 import com.payflow.wallet.entity.Wallet;
@@ -37,7 +37,7 @@ public class WalletService {
     Wallet savedWallet = walletRepository.save(wallet);
     log.info("Wallet created successfully for userId: {}", savedWallet.getUserId());
 
-    return ResponseAssembler.mapToResponse(savedWallet);
+    return WalletAssembler.toResponse(savedWallet);
   }
 
   @Transactional(readOnly = true)
@@ -47,7 +47,7 @@ public class WalletService {
     Wallet wallet = walletRepository.findByUserId(userId)
         .orElseThrow(() -> new IllegalStateException(String.format("Wallet not found for userId: %s", userId)));
 
-    return ResponseAssembler.mapToResponse(wallet);
+    return WalletAssembler.toResponse(wallet);
   }
 
   @Transactional(readOnly = true)
@@ -57,6 +57,6 @@ public class WalletService {
     Wallet wallet = walletRepository.findById(id)
         .orElseThrow(() -> new IllegalStateException(String.format("Wallet not found for id: %s", id)));
 
-    return ResponseAssembler.mapToResponse(wallet);
+    return WalletAssembler.toResponse(wallet);
   }
 }
