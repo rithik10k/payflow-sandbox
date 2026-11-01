@@ -3,11 +3,12 @@ package com.payflow.wallet.repository;
 import com.payflow.wallet.entity.Wallet;
 import jdk.jfr.Registered;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 import java.util.UUID;
 
-@Registered
+@Repository
 public interface WalletRepository extends JpaRepository<Wallet, UUID> {
 
   Optional<Wallet> findByUserId(UUID userId);
